@@ -44,6 +44,7 @@ class TrackActor(ctx: RequestContext, p: Promise[RouteResult]) extends Actor wit
         Left(MediaException(s"Track with id: $trackId"))
       }
       Future(TrackActorResponse(trackOrError)) pipeTo self
+      context.become(done(sender))
 
     case AddTrackActorRequest(trackRequest) =>
       val response = if (trackRequest.track.id.equals("nznx3r")) {
@@ -51,7 +52,8 @@ class TrackActor(ctx: RequestContext, p: Promise[RouteResult]) extends Actor wit
       } else {
         Right(s"Track added successfully!")
       }
-      Future(AddTrackActorResponse(response))
+      Future(AddTrackActorResponse(response)) pipeTo self
+      context.become(done(sender))
   }
 
   def done(originalSender: ActorRef): Receive = {

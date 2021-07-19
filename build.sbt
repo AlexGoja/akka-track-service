@@ -1,5 +1,4 @@
 import sbt._
-import com.typesafe.sbt.packager.docker._
 
 val akkaVersion     = "2.5.25"
 val akkaHttpVersion = "10.1.10"
@@ -44,6 +43,6 @@ lazy val root = (project in file("."))
       "com.typesafe.slick"           %% "slick"                    % "3.2.3",
       "com.typesafe.slick"           %% "slick-hikaricp"           % "3.2.3",
       "de.heikoseeberger"            %% "akka-http-circe"          % "1.29.1",
-      "org.scalatest"                %% "scalatest"                % "3.0.1" % Test,
+      "org.scalatest"                %% "scalatest"                % "3.2.9" % Test,
     )
   )
